@@ -14,7 +14,6 @@ const DiaryEditor = () => {
     })
 
 
-
     const handleChangeState = (e) => {
         setState({
             ...state, 
