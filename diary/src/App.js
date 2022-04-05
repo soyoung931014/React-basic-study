@@ -57,11 +57,17 @@ function App() {
     setData([newItem, ...data])
   } 
 
+  const onDelete = (id) => {
+    window.confirm('정말 삭제할까요?')
+    const deleteList = data.filter(el => el.id !== id)
+    setData(deleteList)
+}
+
   return (
     <div className="App">
      <h2>오늘의 일기</h2>
      <DiaryEditor onCreate={onCreate}/>
-     <DiaryList  diaryList={data}/>
+     <DiaryList  diaryList={data} onDelete={onDelete}/>
      
     </div>
   );

@@ -31,12 +31,12 @@ const DiaryEditor = ({onCreate}) => {
             return; 
         }
 
-        if (state.content.length < 5) {
+        if (state.content.length < 1) {
             contentInput.current.focus();
             return;
         }
-        onCreate(state.author, state.content, state.emotion)
         alert("저장 성공")
+        onCreate(state.author, state.content, state.emotion)
         setState({
             author: "",
             content: "",

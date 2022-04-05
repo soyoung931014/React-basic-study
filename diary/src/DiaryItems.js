@@ -1,7 +1,8 @@
 import React from 'react'
 
-function DiaryItems({author, content, emotion, created_date}) {
-   
+function DiaryItems({author, content, emotion, created_date, id, onDelete}) {
+ 
+
     return (
         <div className="DiaryItem">
 
@@ -15,7 +16,7 @@ function DiaryItems({author, content, emotion, created_date}) {
             <div className="content">
                 {content}
             </div>
-            
+            <button onClick={() => {onDelete(id)}}>삭제하기</button>
         </div>
     )
 }

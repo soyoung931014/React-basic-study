@@ -1,6 +1,6 @@
 import DiaryItems from "./DiaryItems";
 
-const DiaryList = ({diaryList}) => {
+const DiaryList = ({diaryList, onDelete}) => {
     console.log(diaryList);
 
     return( 
@@ -9,7 +9,7 @@ const DiaryList = ({diaryList}) => {
         <h4>{diaryList.length}개의 일기가 있습니다.</h4>
         <div>
             {diaryList.map(el => (
-                <DiaryItems key={el.id} {...el}/>
+                <DiaryItems key={el.id} {...el} diaryList={diaryList} onDelete={onDelete}/>
          
             ))}
         </div>
