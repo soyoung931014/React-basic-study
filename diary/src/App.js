@@ -1,7 +1,7 @@
 import './App.css';
 import DiaryEditor from './DiaryEditor';
 import DiaryList from './DiaryList';
-import { useState, useRef, useEffect } from 'react'
+import { useState, useRef, useEffect, useMemo } from 'react'
 
 
 
@@ -28,9 +28,9 @@ function App() {
   };
   
   useEffect(() => {
-    getData()
+    getData();
   },[])
-
+ 
 
 
  
@@ -56,11 +56,26 @@ function App() {
       data.map(el => el.id === targetId ? {...el, content: newContent} : el)
     )
   }
+  const getDiaryAnalysis = useMemo(() => {
+    console.log('일기 분석 시작');
+    const goodCount = data.filter(el => el.emotion >=3).length;
+    const badCount = data.length - goodCount;
+    const goodRatio = (goodCount / data.length) * 100;
+    return {goodCount, badCount, goodRatio}
+  }, [data.length]);
+
+  const {goodCount, badCount, goodRatio} = getDiaryAnalysis
+  // getDiaryAnalysis()이렇게 하면 오류뜸. 왜냐면 변수 getDiartAnalysis는 return값이 있는 '값'이지 '함수'가 아니기 때문
+  // useMemo는 값을 받는다.
 
   return (
     <div className="App">
       <h2>오늘의 일기</h2>
       <DiaryEditor onCreate={onCreate} />
+      <div>전체 일기 : {data.length}</div>
+      <div>기분 좋은 일기 개수 : {goodCount}</div>
+      <div>기분 나쁜 일기 개수 : {badCount}</div>
+      <div>기분 좋은 일기 비율 : {goodRatio}</div>
       <DiaryList onEdit={onEdit} diaryList={data} onRemove={onRemove} />
 
     </div>

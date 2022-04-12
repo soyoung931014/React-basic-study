@@ -11,7 +11,7 @@ const DiaryEditor = ({ onCreate }) => {
         content: "",
         emotion: 1
     })
-
+   
 
     const handleChangeState = (e) => {
         setState({
