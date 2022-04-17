@@ -1,6 +1,7 @@
 import './App.css';
 import DiaryEditor from './DiaryEditor';
 import DiaryList from './DiaryList';
+import Optimaize from './Optimaize';
 import { useState, useRef, useEffect, useMemo } from 'react'
 
 
@@ -62,15 +63,16 @@ function App() {
     const badCount = data.length - goodCount;
     const goodRatio = (goodCount / data.length) * 100;
     return {goodCount, badCount, goodRatio}
-  }, [data.length]);
+  }, [data.length])
 
-  const {goodCount, badCount, goodRatio} = getDiaryAnalysis
+  const {goodCount, badCount, goodRatio} = getDiaryAnalysis;
   // getDiaryAnalysis()이렇게 하면 오류뜸. 왜냐면 변수 getDiartAnalysis는 return값이 있는 '값'이지 '함수'가 아니기 때문
   // useMemo는 값을 받는다.
 
   return (
     <div className="App">
       <h2>오늘의 일기</h2>
+      <Optimaize />
       <DiaryEditor onCreate={onCreate} />
       <div>전체 일기 : {data.length}</div>
       <div>기분 좋은 일기 개수 : {goodCount}</div>
