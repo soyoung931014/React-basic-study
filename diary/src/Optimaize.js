@@ -1,7 +1,28 @@
 import React, {useState, useEffect} from 'react';
 
 
-const TextView = ({text}) => {
+// const TextView = ({text}) => {
+//     useEffect(() => {
+//         console.log(`update : : Text: ${text}`)
+//     })
+//     return (
+//         <div>
+//             {text}
+//         </div>
+//     )
+// }
+// const CountView = ({count}) => {
+//     useEffect(() => {
+//         console.log(`update : : Count: ${count}`)
+//     })
+//     return (
+//         <div>
+//             {count}
+//         </div>
+//     )
+// }
+
+const TextView = React.memo(({text}) => {
     useEffect(() => {
         console.log(`update : : Text: ${text}`)
     })
@@ -10,8 +31,8 @@ const TextView = ({text}) => {
             {text}
         </div>
     )
-}
-const CountView = ({count}) => {
+});
+const CountView = React.memo(({count}) => {
     useEffect(() => {
         console.log(`update : : Count: ${count}`)
     })
@@ -20,7 +41,8 @@ const CountView = ({count}) => {
             {count}
         </div>
     )
-}
+});
+
 function Optimaize() {
     const [count, setCount] = useState(1);
     const [text, setText] = useState("");
