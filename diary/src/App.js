@@ -71,7 +71,7 @@ function App() {
 
   // 🌹 usMemo사용 후, 데이터의 길이가 변할때만 렌더링됨(최적화됨)
   const getDiaryAnalysis = useMemo(() => {
-    console.log("일기 분석 시작");
+    //console.log("일기 분석 시작");
     const goodCount = data.filter((el) => el.emotion >= 3).length;
     const badCount = data.length - goodCount;
     const goodRatio = (goodCount / data.length) * 100;
