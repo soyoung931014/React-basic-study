@@ -1,10 +1,11 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useRef, useState } from 'react';
 
 const DiaryEditor = ({ onCreate }) => {
     const authorInput = useRef(); // useRef라는 함수를 가져옴 React.MutableRefObject<undefined>에 접근
     // React.MutableRefObject는 html의 dom요소에 접근하게 해줌 => 원하는 태그에 접근할 수 있다.
     const contentInput = useRef();
+    useEffect(() => {console.log('다이어리에디터 렌더')})
 
     const [state, setState] = useState({
         author: "",
@@ -77,6 +78,6 @@ const DiaryEditor = ({ onCreate }) => {
 
     )
 };
-export default DiaryEditor
+export default React.memo(DiaryEditor)
 
 

@@ -2,11 +2,12 @@ import './App.css';
 import DiaryEditor from './DiaryEditor';
 import DiaryList from './DiaryList';
 import Optimaize from './Optimaize';
-import { useState, useRef, useEffect, useMemo } from 'react'
+import { useState, useRef, useEffect, useMemo, useCallback } from 'react'
 
 
 
 function App() {
+  console.log('마운팅')
   const [data, setData] = useState([]);
 
   const dataId = useRef(0);
@@ -33,7 +34,7 @@ function App() {
     getData();
   }, []);
 
-  const onCreate = (author, content, emotion) => {
+  const onCreate = useCallback((author, content, emotion) => {
     const created_date = new Date().getTime();
     const newItem = {
       author,
@@ -44,7 +45,7 @@ function App() {
     };
     dataId.current += 1;
     setData([newItem, ...data]);
-  };
+  },[]);
 
   const onRemove = (id) => {
     const RemoveList = data.filter((el) => el.id !== id);
@@ -86,7 +87,7 @@ function App() {
   return (
     <div className="App">
       <h2>오늘의 일기</h2>
-      <Optimaize />
+    
       <DiaryEditor onCreate={onCreate} />
       <div>전체 일기 : {data.length}</div>
       <div>기분 좋은 일기 개수 : {goodCount}</div>
